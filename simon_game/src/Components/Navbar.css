@@ -7,7 +7,9 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #111;
+  background-color: #4724a5;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-
+  font-size: 40px;
+  color:black;
+  font-family: 'NeonSpark', sans-serif;
 }

@@ -10,7 +10,7 @@ function BrandExample() {
       
       <Navbar className="bg-body-tertiary">
         <Container>
-          <Navbar.Brand href="#home">
+          <Navbar.Brand>
            Simon Says
           </Navbar.Brand>
         </Container>
