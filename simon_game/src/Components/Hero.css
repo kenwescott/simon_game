@@ -1,0 +1,63 @@
+
+.hero {
+  margin-left: 70 px;
+  height: 100vh;
+  width: 100vw;
+  background-image: url('/public/images/freepik_dark.jpeg'); /* Replace with your image path */
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 15px;
+  position: relative;
+}
+
+.hero-overlay {
+
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-content {
+  text-align: center;
+  color: #fff;
+  padding: 0 1.5rem;
+}
+
+.hero-title {
+  font-family: 'NeonSpark', sans-serif;
+  font-size: 100px;
+  font-weight: 200;
+  padding-bottom: 50px;
+  color:#d34491;
+}
+
+.hero-btn {
+  margin-top: 20px;
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  color: #fff;
+  background-color: #d34491;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow:
+    0 0 10px #d34491,
+    0 0 20px #e754a3,
+    0 0 40px #f66cb2,
+    0 0 80px #ffa0cf;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.hero-btn:hover {
+  transform: scale(1.05);
+  box-shadow:
+    0 0 15px #b266ff,
+    0 0 30px #b266ff,
+    0 0 60px #d9b3ff,
+    0 0 100px #e0ccff;
+}
