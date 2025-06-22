@@ -13,14 +13,12 @@ function MyVerticallyCenteredModal(props) {
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
-      className="custom-modal"
     >
-      <Modal.Header>
-  <Modal.Title id="contained-modal-title-vcenter">
-    Game Instructions
-  </Modal.Title>
-  <button className="custom-close-btn" onClick={props.onHide}>&times;</button>
-</Modal.Header>
+     <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Instructions
+        </Modal.Title>
+      </Modal.Header>
 
       
       <Modal.Body>

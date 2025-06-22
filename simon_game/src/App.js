@@ -13,9 +13,15 @@ import Simonsays from './pages/simonsays';
 function App() {
   return (
     <Router>
-      <BootstrapNavbar expand="lg">
+      <BootstrapNavbar style={{ backgroundColor: '#4724a5', fontSize:'1.3rem' }} expand="lg" >
         <Container>
-          <BootstrapNavbar.Brand as={Link} to="/">Simon Says</BootstrapNavbar.Brand>
+          <BootstrapNavbar.Brand as={Link} to="/"   style={{
+        fontSize: '2rem',
+        fontWeight: 'bold',
+        textShadow: '1px 1px 2px black',
+        fontFamily: 'NeonSpark, sans-serif'
+      }}>
+        REPEATER</BootstrapNavbar.Brand>
           <BootstrapNavbar.Toggle aria-controls="basic-navbar-nav" />
           <BootstrapNavbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">

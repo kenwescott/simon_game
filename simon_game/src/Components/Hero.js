@@ -7,7 +7,7 @@ function Hero() {
     <section className="hero">
       <div className="hero-overlay">
         <div className="hero-content">
-          <h1 className="hero-title"> Simon Says</h1>
+          <h1 className="hero-title"> REPEATER </h1>
           
           <Link to="/Instructions" className="hero-btn">Start Playing</Link>
           

@@ -1,6 +1,6 @@
-.custom-modal .modal-content {
+/*.custom-modal .modal-content {
   color: #6627d5; /* Optional: change text color for contrast */
-  border-radius: 10px;
+ /* border-radius: 10px;
   border: none;
 }
 
@@ -25,7 +25,7 @@
   right: 1rem;
   top: 0.3rem;
   z-index: 1051; /* higher than modal */
-}
+/*}
 
 .custom-close-btn:hover {
   color: #008dd1;
@@ -45,5 +45,5 @@
   background-color: #00A3FF;
   color: white;
   border-color: #00A3FF;
-}
+}*/
 

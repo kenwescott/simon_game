@@ -11,7 +11,7 @@ function BrandExample() {
       <Navbar className="custom-navbar">
         <Container>
           <Navbar.Brand className="navbar-brand-text">
-           Simon Says
+           REPEATER
           </Navbar.Brand>
         </Container>
       </Navbar>
