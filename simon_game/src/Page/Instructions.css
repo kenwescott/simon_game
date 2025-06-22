@@ -1,0 +1,49 @@
+.custom-modal .modal-content {
+  color: #6627d5; /* Optional: change text color for contrast */
+  border-radius: 10px;
+  border: none;
+}
+
+.custom-modal .modal-header,
+.custom-modal .modal-footer {
+
+ background: transparent;
+}
+
+.custom-modal .modal-title {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.custom-close-btn {
+  background: none;
+  border: none;
+  font-size: 2.5rem;
+  color: #0700C4;
+  cursor: pointer;
+  position: absolute;
+  right: 1rem;
+  top: 0.3rem;
+  z-index: 1051; /* higher than modal */
+}
+
+.custom-close-btn:hover {
+  color: #008dd1;
+}
+
+.custom-footer-close {
+  background-color: transparent;
+  border: 2px solid #00A3FF;
+  color: #00A3FF;
+  border-radius: 6px;
+  padding: 0.4rem 1.2rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.custom-footer-close:hover {
+  background-color: #00A3FF;
+  color: white;
+  border-color: #00A3FF;
+}
+
