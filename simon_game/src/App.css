@@ -2,3 +2,7 @@
   font-family: 'NeonSpark';
   src: url('./assets/Neon Spark.otf') format('opentype');
 }
+
+body{
+  background-color: #FFFDF6;
+}

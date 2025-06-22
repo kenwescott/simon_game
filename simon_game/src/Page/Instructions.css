@@ -1,61 +1,49 @@
-/* Modal backdrop - make it darker and less transparent */
-.modal-backdrop.show {
-  opacity: 0.85 !important;
-  background-color: #000814 !important; /* very dark blue/black */
+.custom-modal .modal-content {
+  color: #6627d5; /* Optional: change text color for contrast */
+  border-radius: 10px;
+  border: none;
 }
 
-/* Modal container */
-.custom-dark-modal .modal-content {
-  background-color: #0a1425;  /* dark navy/blue background */
-  border-radius: 12px;
-  border: 2px solid #00f7ff; /* neon cyan border */
-  box-shadow:
-    0 0 20px #00f7ff,
-    0 0 40px #00f7ff;
-  color: #c0f8ff;
+.custom-modal .modal-header,
+.custom-modal .modal-footer {
+
+ background: transparent;
 }
 
-/* Modal header */
-.custom-dark-modal-header {
-  border-bottom: 1px solid #00f7ff;
-  background-color: #08122f;
-  color: #00f7ff;
-  text-shadow: 0 0 8px #00f7ff;
-}
-
-/* Modal title */
-.custom-dark-modal-title {
-  font-weight: 700;
+.custom-modal .modal-title {
+  font-weight: bold;
   font-size: 1.5rem;
 }
 
-/* Modal body */
-.custom-dark-modal-body {
-  font-size: 1.1rem;
-  color: #9ef2ff;
-  text-shadow:
-    0 0 3px #00f7ff,
-    0 0 6px #00f7ff;
+.custom-close-btn {
+  background: none;
+  border: none;
+  font-size: 2.5rem;
+  color: #0700C4;
+  cursor: pointer;
+  position: absolute;
+  right: 1rem;
+  top: 0.3rem;
+  z-index: 1051; /* higher than modal */
 }
 
-/* Modal footer */
-.custom-dark-modal-footer {
-  border-top: 1px solid #00f7ff;
-  background-color: #08122f;
+.custom-close-btn:hover {
+  color: #008dd1;
 }
 
-/* Close button - keep default or tweak */
-.custom-dark-modal-footer .btn-secondary {
-  background-color: #007aab;
-  border-color: #005f7f;
-  box-shadow: 0 0 10px #00f7ff;
-  color: #c0f8ff;
-  transition: background-color 0.3s ease;
+.custom-footer-close {
+  background-color: transparent;
+  border: 2px solid #00A3FF;
+  color: #00A3FF;
+  border-radius: 6px;
+  padding: 0.4rem 1.2rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
 }
 
-.custom-dark-modal-footer .btn-secondary:hover {
-  background-color: #00bfff;
-  border-color: #0099cc;
-  box-shadow: 0 0 15px #00f7ff;
+.custom-footer-close:hover {
+  background-color: #00A3FF;
   color: white;
+  border-color: #00A3FF;
 }
+
