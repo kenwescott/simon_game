@@ -1,4 +1,4 @@
-.navbar {
+/*.navbar {
   position: sticky;
   top: 0;
   margin-bottom: 100px;
@@ -11,5 +11,24 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   font-size: 40px;
   color:black;
+  font-family: 'NeonSpark', sans-serif;
+}*/
+.custom-navbar {
+  position: sticky;
+  top: 0;
+  margin-bottom: 100px;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #4724a5 !important; /* Use !important if needed */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-brand-text {
+  font-size: 60px;
+  font-weight: 200;
+  color: black;
   font-family: 'NeonSpark', sans-serif;
 }

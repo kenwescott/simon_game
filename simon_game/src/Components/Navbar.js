@@ -8,9 +8,9 @@ function BrandExample() {
   return (
     <>
       
-      <Navbar className="bg-body-tertiary">
+      <Navbar className="custom-navbar">
         <Container>
-          <Navbar.Brand>
+          <Navbar.Brand className="navbar-brand-text">
            Simon Says
           </Navbar.Brand>
         </Container>

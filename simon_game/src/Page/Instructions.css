@@ -1,0 +1,61 @@
+/* Modal backdrop - make it darker and less transparent */
+.modal-backdrop.show {
+  opacity: 0.85 !important;
+  background-color: #000814 !important; /* very dark blue/black */
+}
+
+/* Modal container */
+.custom-dark-modal .modal-content {
+  background-color: #0a1425;  /* dark navy/blue background */
+  border-radius: 12px;
+  border: 2px solid #00f7ff; /* neon cyan border */
+  box-shadow:
+    0 0 20px #00f7ff,
+    0 0 40px #00f7ff;
+  color: #c0f8ff;
+}
+
+/* Modal header */
+.custom-dark-modal-header {
+  border-bottom: 1px solid #00f7ff;
+  background-color: #08122f;
+  color: #00f7ff;
+  text-shadow: 0 0 8px #00f7ff;
+}
+
+/* Modal title */
+.custom-dark-modal-title {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+/* Modal body */
+.custom-dark-modal-body {
+  font-size: 1.1rem;
+  color: #9ef2ff;
+  text-shadow:
+    0 0 3px #00f7ff,
+    0 0 6px #00f7ff;
+}
+
+/* Modal footer */
+.custom-dark-modal-footer {
+  border-top: 1px solid #00f7ff;
+  background-color: #08122f;
+}
+
+/* Close button - keep default or tweak */
+.custom-dark-modal-footer .btn-secondary {
+  background-color: #007aab;
+  border-color: #005f7f;
+  box-shadow: 0 0 10px #00f7ff;
+  color: #c0f8ff;
+  transition: background-color 0.3s ease;
+}
+
+.custom-dark-modal-footer .btn-secondary:hover {
+  background-color: #00bfff;
+  border-color: #0099cc;
+  box-shadow: 0 0 15px #00f7ff;
+  color: white;
+}
