@@ -138,7 +138,7 @@ function Simonsays() {
 
     return (
         <Container style={{ backgroundColor: '#7482E5', padding: '2rem' }} >
-            <h1> Simon says</h1>
+            <h1> Repeater</h1>
             <div>
                 <p>
                     {message}
@@ -146,7 +146,7 @@ function Simonsays() {
             </div>
              <div>
                 <p>
-                  <strong>Score:</strong> {score}
+                   Score: <strong>{score}</strong>
                 </p>
               </div>
             <div style={{textAlign: 'center'} }>
@@ -163,17 +163,17 @@ function Simonsays() {
                 )
                 )}
             </div>
-            {!gameStatus && <Row className="justify-content-center">
-                <Col><Button onClick={startGame} variant="success">
+             <Row className="justify-content-center">
+                {!gameStatus && <Col className="text-center"><Button onClick={startGame} variant="success">
                     Start
-                </Button></Col>
-                <Col><Button onClick={resetGame} variant="danger">
+                </Button></Col>}
+                <Col className="text-center"><Button onClick={resetGame} variant="danger">
                     Reset
                 </Button></Col>
 
-            </Row>}
+            </Row>
             {!gameStatus && <Row className="justify-content-center my-3">
-                <Col xs={12} md={4}>
+                 <Col xs={12} md={4}>
                     <Form.Group controlId="levelSelect">
                         <Form.Label>Select level:</Form.Label>
                         <Form.Select
@@ -203,12 +203,12 @@ function Simonsays() {
                         </Form.Select>
                     </Form.Group>
                 </Col>
-                <Col xs={12} md={2} className="justify-content-center" >
+                <Col xs={12} md={2} className="text-center" >
                     <Button onClick={addColor} variant="warning">
                         Add Color
                     </Button>
                 </Col>
-                <Col xs={12} md={2} className="justify-content-center">
+                <Col xs={12} md={2} className="text-center">
                     <Button onClick={resetColor} variant="warning">
                         Reset Colors
                     </Button>
