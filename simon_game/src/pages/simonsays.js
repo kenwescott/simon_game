@@ -1,13 +1,10 @@
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect, useRef } from 'react';
 import { Container, Row, Col, Button, Form } from 'react-bootstrap';
+import './simonsays.css';
 
 function getRandomColor(colors){
         return colors[Math.floor(Math.random() * colors.length)];
-    }
-
-    const colorThemes = { // Define color themes with arrays of colors
-        Classic: ['red', 'blue', 'green', 'yellow', 'orange', 'purple', 'pink', 'brown', 'cyan', 'magenta'],
     }
 
 function Simonsays() {
@@ -15,27 +12,39 @@ function Simonsays() {
     const [userSequence, setUserSequence] = useState([]); //Stores the color sequence the user clicked in a round
     const [isUserTurn, setIsUserTurn] = useState(false); //Flag to check if the user is allowed to click the simon says buttons
     const [score, setScore] = useState(0); //int that tracks score
-    const [theme, setTheme] = useState('Classic'); //color theme
+    const [level, setLevel] = useState('slow'); // Current game level
+    const [colorTheme, setColorTheme] = useState(['red', 'blue', 'green', 'yellow']); //color theme
+    const [availableColors, setAvailableColors] = useState(['orange', 'purple', 'pink', 'brown', 'cyan', 'magenta']);
+    const [colorToAdd, setColorToAdd] = useState('orange'); //color to add when user click "add color"
     const [message, setMessage] = useState('Select level and theme, then click Start'); // Message to display to the user
     const [highlight, setHighlight] = useState(null); // Color currently highlighted in the sequence
+    const [gameStatus, setGameStatus] = useState(false);
+    const [clicked, setClicked] = useState(null); //stores the color the user clicked
 
     const timeoutsRef = useRef([]); //Timeout for animating the sequence
 
-     
+    const levelToSpeed = {
+        'slow': 800,
+        'medium': 600,
+        'fast': 400
+    };
 
     const startGame = () => {
         clearPlayTimeouts();
-        const colors = colorThemes[theme].slice(0, 4);
+        setGameStatus(true);
+        const colors = colorTheme;
         const initialSequence = Array.from({ length: 1 }, () => getRandomColor(colors));
         setSequence(initialSequence);
         setScore(0);
         setUserSequence([]);
         setIsUserTurn(false);
-        playSequence(initialSequence, 400);
+        setMessage('Watch the sequence...'); 
+        playSequence(initialSequence, levelToSpeed[level]);
     }
 
     const resetGame = () => {
-         clearPlayTimeouts(); // Clear any existing timeouts
+        clearPlayTimeouts(); // Clear any existing timeouts
+        setGameStatus(false);
         setSequence([]); // Reset the sequence
         setUserSequence([]); // Reset the user's input sequence
         setScore(0); // Reset the score
@@ -61,7 +70,8 @@ function Simonsays() {
         const userTurnTime = seq.length * (speed + 200); // Calculate the time after which the user can start inputting their sequence
         timeoutsRef.current.push( // Store the timeout for allowing user input
           setTimeout(() => {
-            setIsUserTurn(true);
+              setIsUserTurn(true);
+              setMessage('Now press the buttons in sequence');
           }, userTurnTime)
         );
     }
@@ -70,6 +80,10 @@ function Simonsays() {
          if (!isUserTurn) return; // If it's not the user's turn, do nothing
          //setMessage(`color: ${color}`);
         setUserSequence((prev) => [...prev, color]); // Add the clicked color to the user's input sequence
+        setClicked(color);
+        setTimeout(() => {
+            setClicked(null);
+        }, 200);
     }
 
     useEffect(() => {
@@ -78,67 +92,130 @@ function Simonsays() {
         const currentIndex = userSequence.length - 1;
 
         if (userSequence[currentIndex] !== sequence[currentIndex]) { // Check if the user's last move matches the sequence
-          setMessage(`Wrong move! Game Over. Final Score: ${score}`);
+            setMessage(`Wrong move! Game Over. Final Score: ${score}`);
+            setGameStatus(false);
           setIsUserTurn(false); // Set user turn to false
           return;
         }
 
          if (userSequence.length === sequence.length) { // If the user has completed the sequence
           setIsUserTurn(false); // Set user turn to false
-          setMessage('Correct! Get ready for next sequence...');
-          const colors = colorThemes[theme].slice(0, 4); // Get the colors for the current theme and level
+             setMessage('Correct! Get ready for next sequence...');
+             setScore((prev) => prev + 1); // Increment the score
+          const colors = colorTheme; // Get the colors for the current theme and level
           const nextColor = getRandomColor(colors); // Get a random color for the next sequence
           const newSequence = [...sequence, nextColor]; // Create a new sequence by adding the new color
-          const speed = 400; // Get the speed based on the current level
+          const speed = levelToSpeed[level]; // Get the speed based on the current level
           setTimeout(() => { // Set a timeout to allow the user to see the new sequence
             setSequence(newSequence); // Update the sequence with the new color
             setUserSequence([]); // Reset the user's input sequence
-            setScore((prev) => prev + 1); // Increment the score
             setMessage('Watch the sequence...'); 
             playSequence(newSequence, speed); // Play the new sequence
           }, 1000); 
         }
     }, [userSequence]);
 
-    const currentColors = colorThemes[theme].slice(0, 4); // Get the current colors based on the selected theme and level
-    const r = 70
-    const circleSize = 2* 3.14 *r;
+    // const currentColors = colorTheme; // Get the current colors based on the selected theme and level
+
+    const addColor = () => {
+        if (colorToAdd != null) {
+            const index = availableColors.indexOf(colorToAdd);
+            if (index > -1) {
+                const colors = availableColors;
+                colors.splice(index, 1); // 2nd parameter means remove one item only
+                setColorTheme([...colorTheme, colorToAdd]);
+                setColorToAdd(availableColors[0]);
+            }
+        }
+        
+    }
+
+    const resetColor = () => {
+        setColorTheme(['red', 'blue', 'green', 'yellow']);
+        setAvailableColors(['orange', 'purple', 'pink', 'brown', 'cyan', 'magenta']);
+        setColorToAdd('orange');
+    }
 
     return (
-        <Container>
+        <Container style={{ backgroundColor: '#7482E5', padding: '2rem' }} >
             <h1> Simon says</h1>
-            <Row>
-                <Button onClick={startGame} variant="primary">
-                    Start
-                </Button>
-            </Row>
-            <Row>
-                <Button onClick={resetGame} variant="primary">
-                    Reset
-                </Button>
-            </Row>
+            <div>
+                <p>
+                    {message}
+                </p>
+            </div>
              <div>
                 <p>
                   <strong>Score:</strong> {score}
                 </p>
               </div>
-              
-                {currentColors.map((color, index)=> (
-                    <svg width="200" height="200">
-                  <circle r={r} cx="100" cy="100" fill={highlight === color ? "gray": color} stroke="black" stroke-width="5" 
-                  onClick={() => handleButtonClick(color)} disabled={!isUserTurn}
+            <div style={{textAlign: 'center'} }>
+                {colorTheme.map((color)=> (
+                    <svg width="200" height="200" key={color}>
+                        <circle r="70" cx="100" cy="100" fill={color} stroke={highlight === color || clicked === color ? "#F9DEC9" : "black"} stroke-width="5"
+                            onClick={() => handleButtonClick(color) } disabled={!isUserTurn}
+                            style={{
+                                opacity: highlight === color? 1 : 0.8,
+                                cursor: isUserTurn ? 'pointer' : 'default',
+                            }}
                   ></circle>
-                  </svg>
+                    </svg>
                 )
                 )}
-           
-            <div>
-                <p>
-                  <strong>Score:</strong> {message}
-                </p>
-              </div>
+            </div>
+            {!gameStatus && <Row className="justify-content-center">
+                <Col><Button onClick={startGame} variant="success">
+                    Start
+                </Button></Col>
+                <Col><Button onClick={resetGame} variant="danger">
+                    Reset
+                </Button></Col>
 
-
+            </Row>}
+            {!gameStatus && <Row className="justify-content-center my-3">
+                <Col xs={12} md={4}>
+                    <Form.Group controlId="levelSelect">
+                        <Form.Label>Select level:</Form.Label>
+                        <Form.Select
+                            value={level}
+                            onChange={(e) => setLevel(e.target.value)}
+                        >
+                            {['slow', 'medium', 'fast'].map((lvl) => (
+                                <option key={lvl} value={lvl}>
+                                    {lvl}
+                                </option>
+                            ))}
+                        </Form.Select>
+                    </Form.Group>
+                </Col>
+                <Col xs={12} md={4}>
+                    <Form.Group controlId="colorSelect">
+                        <Form.Label>Select color to add:</Form.Label>
+                        <Form.Select
+                            value={colorToAdd}
+                            onChange={(e) => setColorToAdd(e.target.value)}
+                        >
+                            {availableColors.map((key) => (
+                                <option key={key} value={key}>
+                                    {key}
+                                </option>
+                            ))}
+                        </Form.Select>
+                    </Form.Group>
+                </Col>
+                <Col xs={12} md={2} className="justify-content-center" >
+                    <Button onClick={addColor} variant="warning">
+                        Add Color
+                    </Button>
+                </Col>
+                <Col xs={12} md={2} className="justify-content-center">
+                    <Button onClick={resetColor} variant="warning">
+                        Reset Colors
+                    </Button>
+                </Col>
+            </Row>
+            }
+            
 
         </Container>
     
